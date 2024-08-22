@@ -28,18 +28,23 @@ model User {
   Postulation Postulation[]
      @@map ("users")
   
+  Job Job[]
 }
-
 model Job {
   id             Int        @id @default(autoincrement())
   title          String
   description    String
   deadline       String
   location       String
+  employer_id    Int
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
+  
+  employer       User       @relation(fields: [employer_id], references: [id]) // relation with User
+
   Postulation    Postulation[] // relation with Postulation
-  @@map ("job")
+
+  @@map("job")
 }
 
 model Postulation {

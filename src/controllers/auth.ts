@@ -75,21 +75,7 @@ export
         
     }
 
-export const create_job = async(req:Request,res:Response,next:NextFunction)=>{
-    const {title,description,deadline,location}=req.body;
-    let job = await prismaClient.job.create(
-        {
-            data:{
-                title,
-                description,
-                deadline,
-                location
-            
 
-            }
-        }
-    )
-    res.json(job)
     
-}
+
     
