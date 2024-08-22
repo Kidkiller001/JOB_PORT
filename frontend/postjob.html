@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nkapcity - Post Job</title>
+    <link rel="stylesheet" href="/frontend/styles/postjob.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">NKAPCITY</div>
+        <div class="auth-buttons">
+            <button id="signup" onclick="window.location.href='register.html'">Sign Up</button>
+            <button id="login" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </header>
+    <nav>
+        <a href="/frontend/employerdash.html">Dashboard</a>
+        <a href="/frontend/postjob.html">Post Job</a>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1>NKAPCITY™ <strong>JOB POSTING</strong></h1>
+            <form id="job-form">
+                <h2>Enter job details below</h2>
+
+                <div class="form-group">
+                    <label for="job-title">Job title</label>
+                    <input type="text" id="job-title" name="jobTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="salary">Salary</label>
+                    <div class="salary-input">
+                        <input type="number" id="salary" name="salary" required>
+                        <select id="currency" name="currency">
+                            <option value="XAF">XAF</option>
+                            <option value="XAF">EUR</option>
+                            <option value="XAF">USD</option>
+                            <option value="XAF">CAD</option>
+                            <option value="XAF">GBP</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="deadline">Application deadline</label>
+                    <input type="date" id="deadline" name="deadline" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-info">Contact information</label>
+                    <input type="text" id="contact-info" name="contactInfo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="job-description">Job description</label>
+                    <textarea id="job-description" name="jobDescription" required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="reset" class="reset-button">Reset</button>
+                    <button type="submit" class="post-job-button">Post job</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('jobForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            const jobData = {
+                jobTitle: document.getElementById('jobTitle').value,
+                salary: document.getElementById('salary').value,
+                currency: document.getElementById('currency').value,
+                deadline: document.getElementById('deadline').value,
+                contactInfo: document.getElementById('contactInfo').value,
+                jobDescription: document.getElementById('jobDescription').value
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/api/jobs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jobData)
+                });
+
+                if (response.ok) {
+                    alert('Job posted successfully!');
+                } else {
+                    alert('Failed to post the job. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Nkapcity &copy; 2024 frontend GUI</p>
+    </footer>
+</body>
+
+</html>

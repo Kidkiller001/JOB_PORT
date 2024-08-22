@@ -1,0 +1,210 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+
+
+header {
+    background-color: #6864B2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 100px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 18px;
+    color: white;
+    font-weight: bolder;
+}
+
+.navbar nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 150px;
+    background-color: #37347c;
+    padding: 7px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold ;
+    justify-content: space-around;
+    transition: 0.5s ease;
+
+}
+
+nav a:active {
+    color: #00c7a6;
+}
+
+nav a:hover {
+    color: #eb9a8c;
+}
+
+#signup {
+    background-color: #37347c;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: 0.5s ease;
+}
+
+#login {
+    background-color: #fff;
+    color: #37347c;
+    border: none;
+    padding: 5px 15px;
+    margin-left: 0px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: 0.5s ease;
+}
+
+#login:hover {
+    background-color: #00c7a6;
+}
+
+#signup:hover {
+    background-color: #2e28eb;
+}
+
+
+.auth-buttons button:hover {
+    background-color: #ddd;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 30px auto;
+    width: 70%;
+    max-width: 800px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #37347c;
+    font-size: 28px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: lighter;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #8374ac8c;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.salary-input {
+    display: flex;
+}
+
+.salary-input input {
+    flex: 1;
+}
+
+.salary-input select {
+    width: 70px;
+    margin-left: 10px;
+}
+
+textarea {
+    height: 328px;
+    resize:calc();
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.reset-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.5s ease;
+}
+
+.reset-button:hover {
+    background-color: #911f1b;
+}
+
+
+
+.post-job-button {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.5s ease;
+
+}
+
+.post-job-button:hover {
+    background-color: #1e8cad;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #6864B2;
+    color: white;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+}

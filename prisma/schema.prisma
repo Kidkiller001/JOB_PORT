@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  password   String
+  role       String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+ 
+  employerPostulations  Postulation[] @relation("Employer")
+  employeePostulations  Postulation[] @relation("Employee")
+  Postulation Postulation[]
+     @@map ("users")
+  
+}
+
+model Job {
+  id             Int        @id @default(autoincrement())
+  title          String
+  description    String
+  deadline       String
+  location       String
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  Postulation    Postulation[] // relation with Postulation
+  @@map ("job")
+}
+
+model Postulation {
+  id           Int      @id @default(autoincrement())
+  employerId   Int
+  employeeId   Int
+  jobId        Int
+  createdAt    DateTime @default(now())
+  employer     User     @relation("Employer", fields: [employerId], references: [id])
+  employee     User     @relation("Employee", fields: [employeeId], references: [id])
+  job          Job      @relation(fields: [jobId], references: [id])
+  
+  @@unique([employerId, employeeId, jobId]) // Unique constraint on the combination of these fields
+  User User[]
+  
+}
+
+model Email {
+  id        Int      @id @default(autoincrement())
+  sender    String
+  receiver  String
+  sentAt    DateTime @default(now())
+  @@map("email")
+}

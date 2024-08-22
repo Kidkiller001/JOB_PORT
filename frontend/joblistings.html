@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NKAPCITY - Job Listings</title>
+    <link rel="stylesheet" href="/frontend/styles/joblistings.css">
+</head>
+<body>
+    <header>
+        <div class="logo">NKAPCITY</div>
+        <div class="auth-buttons">
+            <button id="signup" onclick="window.location.href='register.html'">Sign Up</button>
+            <button id="login" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="#">Job Listings</a></li>
+            <li><a href="login.html">Post Jobs</a></li>
+        </ul>
+    </nav>
+    
+    <div class="search-bar">
+        <input type="text" placeholder="Search" id="search-input">
+        <button id="search-button">SEARCH</button>
+    </div>
+
+    <div class="main-container">
+        <div class="job-list-container">
+            <h3>Job</h3>
+            <ul id="job-list">
+                <!-- Jobs will be populated here -->
+            </ul>
+        </div>
+        <div class="job-detail-container">
+            <div id="job-detail">
+            <h3>Job details</h3>
+            <div class="job-info"></div>
+                <h4 id="job-title">Job Title</h4>
+                <p id="job-location">Location</p>
+                <p id="job-company">Company</p>
+                <p id="job-date">Posted Date</p>
+                <p id="job-salary">Salary</p>
+                <div class="job-description">
+                    <h4>Description</h4>
+                    <p id="job-description-text">Lorem ipsum dolor sit amet...</p>
+                </div>
+                <div class="job-buttons">
+                    <button id="save-job">Save Job</button>
+                    <button id="apply-job" onclick="window.location.href='applicationpage.html'">Apply</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const jobList = document.getElementById('job-list');
+            const jobTitle = document.getElementById('job-title');
+            const jobLocation = document.getElementById('job-location');
+            const jobAuthor = document.getElementById('job-author');
+            const jobDate = document.getElementById('job-date');
+            const jobSalary = document.getElementById('job-salary');
+            const jobDescriptionText = document.getElementById('job-description-text');
+            const saveJobButton = document.getElementById('save-job');
+            const applyJobButton = document.getElementById('apply-job');
+
+            function fetchJobs() {
+                fetch('http://localhost:3000/api/jobs')
+                    .then(response => response.json())
+                    .then(data => {
+                        jobList.innerHTML = '';
+                        data.forEach(job => {
+                            const jobItem = document.createElement('li');
+                            jobItem.textContent = job.title;
+                            jobItem.addEventListener('click', () => displayJobDetails(job));
+                            jobList.appendChild(jobItem);
+                        });
+                    });
+            }
+        
+            function displayJobDetails(job) {
+                jobTitle.textContent = job.title;
+                jobLocation.textContent = job.location;
+                jobAuthor.textContent = job.author;
+                jobDate.textContent = job.datePosted;
+                jobSalary.textContent = job.salary;
+                jobDescriptionText.textContent = job.description;
+            }
+        
+            function saveJob() {
+                // Add your save job logic here
+                // For example, you can use localStorage to store the job details
+                const savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
+                savedJobs.push({
+                    title: jobTitle.textContent,
+                    location: jobLocation.textContent,
+                    author: jobAuthor.textContent,
+                    datePosted: jobDate.textContent,
+                    salary: jobSalary.textContent,
+                    description: jobDescriptionText.textContent
+                });
+                localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
+                alert('Job saved successfully!');
+            }
+        
+            function applyJob() {
+                // Add your apply job logic here
+                // For example, you can redirect the user to the application page
+                window.location.href = 'applicationpage.html';
+            }
+        
+            fetchJobs();
+
+            saveJobButton.addEventListener('click', saveJob);
+            applyJobButton.addEventListener('click', applyJob);
+        });
+    </script>
+</body>
+</html>

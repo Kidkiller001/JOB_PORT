@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NKAPCITY - Dashboard</title>
+    <link rel="stylesheet" href="/frontend/styles/dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="logo">NKAPCITY</div>
+        <div class="auth-buttons">
+            <button id="signup" onclick="window.location.href='register.html'">Sign Up</button>
+            <button id="login" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="joblistings.html">Job Listings</a></li>
+            <li><a href="login.html">Post Jobs</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>WELCOME TO <strong>NKAPCITY</strong></h1>
+            <p>Find your <strong>perfect fit!</strong></p>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search">
+                <button id="search-button">SEARCH</button>
+            </div>
+        </section>
+
+        <section class="popular-searches">
+            <h3>Popular searches</h3>
+            <div class="search-tags">
+                <button onclick="searchByTag('Engineering')">Engineering</button>
+                <button onclick="searchByTag('Customer Service')">Customer Service</button>
+                <button onclick="searchByTag('Graphic Design')">Graphic Design</button>
+                <button onclick="searchByTag('Delivery Driver')">Delivery Driver</button>
+                <button onclick="searchByTag('Data Analyst')">Data Analyst</button>
+                <button onclick="searchByTag('Marketing')">Marketing</button>
+            </div>
+        </section>
+
+        <section class="job-listings">
+            <!-- Job listings will be dynamically populated here -->
+        </section>
+    </main>
+    <script src="/frontend/scripts/dashboard.js"></script>
+</body>
+</html>

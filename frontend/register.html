@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nkapcity - Register</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background: linear-gradient(90deg, #4F5D95, #78B3A3);
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #4F5D95;
+            padding: 2px;
+            text-align: center;
+            color: white;
+            margin-top: 250px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            width: 30%;
+            max-width: 350px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            margin: 0.5rem 0;
+            display: block;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-actions button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-actions .submit-btn {
+            background-color: #3498db;
+            color: white;
+            width: 70%;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            margin-left: 45px;
+        
+        }
+
+        .form-actions .link-btn {
+            background-color: #e74c3c;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            display: block;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        fieldset {
+            border: none;
+            padding: 2rem 0;
+            border-bottom: 1px solid #cccccc;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        fieldset legend {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3b3b4f;
+        }
+
+        fieldset label:last-of-type, input:last-of-type {
+            margin-right: 30px;
+        }
+
+        fieldset input:first-of-type {
+            margin-left: 20px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>WELCOME TO NKAPCITY</h1>
+    </div>
+
+    <div class="container">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+
+            <fieldset class="role">
+                <legend>Role</legend>
+                <label for="employer"><input type="radio" id="employer" name="role" value="employer" required checked>Employer</label>
+                <label for="client"><input type="radio" id="client" name="role" value="client" required>Client</label>
+            </fieldset>
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Register</button>
+            </div>
+            <p>Already have an account? <a href="login.html" class="link-btn">Login</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const role = document.querySelector('input[name="role"]:checked').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+
+            try {
+                const response = await fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, password, role })
+                });
+
+                if (response.ok) {
+                    alert('Registration successful!');
+                    // Redirect to the login page or another page
+                    window.location.href = 'login.html';
+                } else {
+                    alert('Registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+
+</html>

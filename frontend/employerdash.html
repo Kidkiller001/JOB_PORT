@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard - NKAPCITY</title>
+    <link rel="stylesheet" href="/frontend/styles/employerdash.css">
+</head>
+<body>
+    <header>
+        <div class="logo">NKAPCITY</div>
+        <div class="auth-buttons">
+            <button id="signup" onclick="window.location.href='register.html'">Sign Up</button>
+            <button id="login" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </header>
+    <nav>
+        <a href="/frontend/employerdash.html">Dashboard</a>
+        <a href="/frontend/postjob.html">Post Job</a>
+    </nav>
+
+    
+    <div class="welcome-section">
+        <h2>WELCOME TO NKAPCITY</h2>
+        <h3>EMPLOYERS DASHBOARD</h3>
+    </div>
+
+    <div class="jobs-container">
+        <h3>Posted jobs</h3>
+        <div id="jobs-list"></div>
+        <button id="add-job-btn" class="add-job-btn" onclick="window.location.href='postjob.html'">Add job offer</button>
+    </div>
+
+
+    <script src="/frontend/scripts/employerdash.js"></script>
+</body>
+</html>
