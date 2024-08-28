@@ -102,6 +102,7 @@ export const create_job = async (req: Request, res:Response,next:NextFunction) =
       });
       res.json(jobs);
     } catch (error) {
+      console.log(error)
       res.status(500).json({ error: 'Failed to search jobs'});
     }
   };
@@ -117,6 +118,7 @@ export const create_job = async (req: Request, res:Response,next:NextFunction) =
       });
       res.json(postulations);
     } catch (error) {
+      console.log(error)
       res.status(500).json({ error: 'Failed to fetch postulations for the job' });
     }
   };

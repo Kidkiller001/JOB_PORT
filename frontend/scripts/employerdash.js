@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Fetch jobs from MongoDB
-    fetch('http://localhost:3000/api/employer/jobs')
+    fetch('http://localhost:3000/api/job/get_all_jobs')
         .then(response => response.json())
         .then(jobs => {
             jobs.forEach(job => {

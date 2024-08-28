@@ -150,50 +150,14 @@
                 <label for="client"><input type="radio" id="client" name="role" value="client" required>Client</label>
             </fieldset>
             <div class="form-actions">
-                <button type="submit" class="submit-btn">Register</button>
+                <button type="submit" class="submit-btn" >Register</button>
             </div>
             <p>Already have an account? <a href="login.html" class="link-btn">Login</a></p>
         </form>
     </div>
 
-    <script>
-        document.getElementById('registerForm').addEventListener('submit', async function (event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
-
-            const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const role = document.querySelector('input[name="role"]:checked').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-
-
-            try {
-                const response = await fetch('http://localhost:3000/api/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, email, password, role })
-                });
-
-                if (response.ok) {
-                    alert('Registration successful!');
-                    // Redirect to the login page or another page
-                    window.location.href = 'login.html';
-                } else {
-                    alert('Registration failed. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            }
-        });
-    </script>
+    <script src="./scripts/register.js"></script>
+       
 </body>
 
 </html>

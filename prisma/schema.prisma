@@ -59,6 +59,7 @@ model Postulation {
   
   @@unique([employerId, employeeId, jobId]) // Unique constraint on the combination of these fields
   User User[]
+  @@map("postulation")
   
 }
 
